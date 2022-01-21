@@ -30,4 +30,4 @@ jobs:
       - name: Commit converted file
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
-        	commit_message: Converted TOML to JSON 
+          commit_message: Converted TOML to JSON
