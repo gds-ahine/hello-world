@@ -2,7 +2,7 @@ name: Convert Cloudwatch routing TOML to JSON
 
 on:
   push:
-    branches: [master]
+    branches: [bau-update-toml-routing-file]
     paths:
       - "kinesis_processor/accounts_loggroup_index.toml"
   pull_request:
