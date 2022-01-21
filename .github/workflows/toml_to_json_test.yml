@@ -28,7 +28,7 @@ jobs:
         run: pip install toml
       - name: Convert TOML to JSON for the routing file
         working-directory: ./kinesis_processor
-        run: python convert_toml_to_json.py
+        run: python convert_cloudwatch_routing_toml_to_json.py
       - name: Commit converted file
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
