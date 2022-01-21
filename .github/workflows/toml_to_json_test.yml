@@ -27,4 +27,7 @@ jobs:
       - name: Test Splunk indexes in toml file
         working-directory: ./toml_to_json
         run: python toml_to_json.py
+      - uses: stefanzweifel/git-auto-commit-action@v4
+      	with:
+        	commit_message: Converted TOML to JSON  
 
