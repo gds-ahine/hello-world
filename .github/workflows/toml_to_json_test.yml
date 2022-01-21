@@ -1,12 +1,12 @@
-name: Test Splunk indexes in toml bla
+name: Convert Cloudwatch routing TOML to JSON
 
 on:
   push:
     branches: [master]
     paths:
-      - "toml_to_json/accounts_loggroup_index.toml"
+      - "kinesis_processor/accounts_loggroup_index.toml"
   pull_request:
-    branches: [master]
+    branches: [bau-update-toml-routing-file]
 
 jobs:
   test:
@@ -14,6 +14,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        #with:
+        #  token: ${{ secrets.GITHUB_TOKEN }} 
       - name: Set up Python 3.x
         uses: actions/setup-python@v2
         with:
@@ -21,12 +23,12 @@ jobs:
           python-version: "3.x"
           # Optional - x64 or x86 architecture, defaults to x64
           architecture: "x64"
-      - name: Install Poetry
-        working-directory: ./toml_to_json
+      - name: Install TOML library
+        working-directory: ./kinesis_processor
         run: pip install toml
-      - name: Test Splunk indexes in toml file
-        working-directory: ./toml_to_json
-        run: python toml_to_json.py
+      - name: Convert TOML to JSON for the routing file
+        working-directory: ./kinesis_processor
+        run: python convert_toml_to_json.py
       - name: Commit converted file
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
