@@ -1,0 +1,30 @@
+name: Test Splunk indexes in toml bla
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - "toml_to_json/accounts_loggroup_index.toml"
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v2
+        with:
+          # Semantic version range syntax or exact version of a Python version
+          python-version: "3.x"
+          # Optional - x64 or x86 architecture, defaults to x64
+          architecture: "x64"
+      - name: Install Poetry
+        working-directory: ./toml_to_json
+        run: pip install toml
+      - name: Test Splunk indexes in toml file
+        working-directory: ./toml_to_json
+        run: python toml_to_json.py
+
